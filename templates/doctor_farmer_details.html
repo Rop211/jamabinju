@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Farmer Details</h1>
+    <a href="{{ url_for('doctor_dashboard') }}">Back to Dashboard</a>
+    <h2>{{ farmer[1] }}</h2>
+    <p>Age: {{ farmer[2] }}</p>
+    <p>Contact: {{ farmer[3] }}</p>
+    <p>Medical History: {{ farmer[4] }}</p>
+
+    <h3>Add Diagnosis and Recommendations</h3>
+    <form action="{{ url_for('doctor_farmer_details', farmer_id=farmer[0]) }}" method="POST">
+        <label for="disease">Disease:</label>
+        <input type="text" id="disease" name="disease" required><br>
+        <label for="recommendations">Recommendations:</label>
+        <textarea id="recommendations" name="recommendations" required></textarea><br>
+        <label for="follow_up_date">Follow-up Date:</label>
+        <input type="date" id="follow_up_date" name="follow_up_date" required><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>Previous Diagnoses</h3>
+    <table border="1">
+        <tr>
+            <th>Disease</th>
+            <th>Recommendations</th>
+            <th>Follow-up Date</th>
+        </tr>
+        {% for diagnosis in diagnoses %}
+        <tr>
+            <td>{{ diagnosis[3] }}</td>
+            <td>{{ diagnosis[4] }}</td>
+            <td>{{ diagnosis[5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

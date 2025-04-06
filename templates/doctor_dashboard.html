@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Doctor Dashboard</h1>
+        <div class="nav-links">
+            <a href="{{ url_for('doctor_logout') }}" class="button">Logout</a>
+        </div>
+
+        <div class="dashboard">
+            <h2>Patients</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Contact</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for farmer in farmers %}
+                    <tr>
+                        <td>{{ farmer[0] }}</td>
+                        <td>{{ farmer[1] }}</td>
+                        <td>{{ farmer[2] }}</td>
+                        <td>{{ farmer[3] }}</td>
+                        <td>
+                            <a href="{{ url_for('doctor_farmer_details', farmer_id=farmer[0]) }}" class="button">View/Add Details</a>
+                            <a href="{{ url_for('delete_patient', farmer_id=farmer[0]) }}" class="button delete-button">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

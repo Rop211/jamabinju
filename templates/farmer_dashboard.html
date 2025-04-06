@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ farmer[1] }}</h1>
+        <div class="nav-links">
+            <a href="{{ url_for('farmer_logout') }}" class="button">Logout</a>
+        </div>
+
+        <div class="dashboard">
+            <h2>Your Details</h2>
+            <p><strong>Age:</strong> {{ farmer[2] }}</p>
+            <p><strong>Contact:</strong> {{ farmer[3] }}</p>
+            <p><strong>Medical History:</strong> {{ farmer[4] }}</p>
+            <p><strong>Last Check-up Date:</strong> {{ farmer[5] }}</p>
+            <p><strong>Next Check-up Date:</strong> {{ farmer[6] }}</p>
+        </div>
+
+        <div class="dashboard">
+            <h2>Diagnoses and Recommendations</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Disease</th>
+                        <th>Recommendations</th>
+                        <th>Follow-up Date</th>
+                        <th>Doctor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for diagnosis in diagnoses %}
+                    <tr>
+                        <td>{{ diagnosis[0] }}</td>
+                        <td>{{ diagnosis[1] }}</td>
+                        <td>{{ diagnosis[2] }}</td>
+                        <td>{{ diagnosis[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="dashboard">
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="/health-tips">Health Tips</a></li>
+                <li><a href="/disease-prevention">Disease Prevention</a></li>
+                <li><a href="/mental-health">Mental Health</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

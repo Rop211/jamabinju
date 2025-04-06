@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminders Sent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Reminders Sent</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Message</th>
+        </tr>
+        {% for reminder in reminders %}
+        <tr>
+            <td>{{ reminder[0] }}</td>
+            <td>{{ reminder[1] }}</td>
+            <td>{{ reminder[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>
